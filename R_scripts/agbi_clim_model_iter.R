@@ -392,7 +392,7 @@ fcast_long_site_iter <- fcast_site_iter %>%
   dplyr::select(site, iter_new, values) %>%
   tidyr::unnest(values)
 
-#adding AGBI.mid column
+#adding AGBI column
 fcast_long_site2_iter = left_join(
   fcast_long_site_iter,
   select(AGBI_taxon_site_iter, year, site, iter_new, AGBI),
@@ -433,10 +433,10 @@ arima_taxon_2_site_iter = fitted_res_taxon_iter %>%
 # #joining observed AGBI with taxon model AGBI 
 # #DATA AGBI from AGB.data
 # #goes up to 2006
-joined_AGBI_taxon_iter = inner_join(fitted_res_ci_taxon_iter, select(AGBI_taxon_iter, c(year, taxon, site, iter_new, AGBI)), 
+joined_AGBI_taxon_iter = inner_join(fitted_res_taxon_iter, select(AGBI_taxon_iter, c(year, taxon, site, iter_new, AGBI)), 
                                by = c("site", "taxon", "year", 'iter_new'))
 
-saveRDS(joined_AGBI_taxon_iter, "reboot/joined_taxon_AGBI_iter.RDS")
+saveRDS(joined_AGBI_taxon_iter, "reboot/joined_taxon_AGBIs_iter.RDS")
 
 # joining data with fitted site data across all types ----------------------------------
 
